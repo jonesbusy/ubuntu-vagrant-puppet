@@ -28,6 +28,8 @@ Vagrant.configure("2") do |config|
      apt-get update -y && apt-get install -y puppet-agent
      /opt/puppetlabs/puppet/bin/gem install r10k
      cd /vagrant &&  /opt/puppetlabs/puppet/bin/r10k puppetfile install
+     mkdir /vagrant/modules/templates
+     cp -R /vagrant/templates /vagrant/modules/templates
      apt-get autoremove -y
      echo "**************************"
 SCRIPT
@@ -42,6 +44,9 @@ SCRIPT
     puppet.manifests_path = "manifests"
     puppet.module_path = "modules"
     puppet.manifest_file = "init.pp"
+    puppet.environment = "production"
+    puppet.hiera_config_path = "hiera.yaml"
+    puppet.options = ["--verbose"]
   end
 
 end

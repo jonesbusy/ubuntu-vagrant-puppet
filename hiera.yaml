@@ -1,0 +1,11 @@
+---
+version: 5
+hierarchy:
+
+  # Commons
+  - name: "Commons file"
+    path: "commons.yaml"
+    
+defaults:
+  data_hash: "yaml_data"
+  datadir: "data"
