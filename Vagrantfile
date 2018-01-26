@@ -26,6 +26,9 @@ Vagrant.configure("2") do |config|
      wget -P /tmp https://apt.puppetlabs.com/puppet5-release-xenial.deb
      dpkg -i /tmp/puppet5-release-xenial.deb
      apt-get update -y && apt-get install -y puppet-agent
+     /opt/puppetlabs/puppet/bin/gem install r10k
+     cd /vagrant &&  /opt/puppetlabs/puppet/bin/r10k puppetfile install
+     apt-get autoremove -y
      echo "**************************"
 SCRIPT
 
@@ -37,6 +40,7 @@ SCRIPT
   # Puppet
   config.vm.provision "configuration", type: "puppet" do |puppet|
     puppet.manifests_path = "manifests"
+    puppet.module_path = "modules"
     puppet.manifest_file = "init.pp"
   end
 
