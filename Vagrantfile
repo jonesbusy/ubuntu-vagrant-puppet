@@ -13,7 +13,10 @@ Vagrant.configure("2") do |config|
   $script = <<SCRIPT
      echo "**************************"
      echo "Running shell provisionner"
-     apt-get update -y && apt-get upgrade -y
+     echo "LC_ALL=en_GB.UTF-8" >> /etc/environment
+     echo "LANG=en_GB.UTF-8" >> /etc/environment
+     source /etc/environment
+     apt-get install -y language-pack-en && apt-get update -y && apt-get upgrade -y
      apt-get remove docker docker-engine docker.io -y
      apt-get install -y apt-transport-https ca-certificates curl software-properties-common
      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
